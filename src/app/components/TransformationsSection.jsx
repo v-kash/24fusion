@@ -60,7 +60,6 @@ const TESTIMONIALS = [
     name: "Priya Verma",
     rating: 5,
   },
-  
 ];
 
 export default function TransformationsSection({ testimonials = TESTIMONIALS }) {
@@ -75,7 +74,7 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
 
   return (
     <section
-      className="relative w-full bg-white px-6 py-16 md:px-12"
+      className="relative w-full bg-white px-18 py-12 sm:px-6 md:px-12 md:py-16"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       <style>{`
@@ -89,32 +88,33 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
       {/* Header */}
       <div className="mx-auto max-w-3xl text-center">
         <div
-          className="font-nav text-sm font-bold tracking-[0.15em]"
+          className="font-nav text-xs font-bold tracking-[0.12em] sm:text-sm sm:tracking-[0.15em]"
           style={{ color: RED }}
         >
           REAL PEOPLE. REAL RESULTS.
         </div>
-        <h2 className="font-display mt-3 text-4xl leading-none tracking-wide text-neutral-900 sm:text-5xl md:text-6xl">
+        <h2 className="font-display mt-3 text-3xl leading-none tracking-tight text-neutral-900 sm:text-5xl md:text-6xl">
           TRANSFORMATIONS <span style={{ color: RED }}>THAT INSPIRE</span>
         </h2>
-        <p className="mt-4 text-base text-neutral-500 md:text-lg">
-  Thousands Have Started. These Champions Never{" "}
-  <span className="relative inline-block">
-    <span className="relative z-10 pl-1 font-semibold text-[#CF1213]">
-      Gave Up.
-    </span>
+        <p className="mt-4 text-sm text-neutral-500 sm:text-base md:text-lg">
+          Thousands Have Started. These Champions Never{" "}
+          <span className="relative inline-block">
+            <span className="relative z-10 pl-1 font-semibold text-[#CF1213]">
+              Gave Up.
+            </span>
 
-    <img
-      src="/Vector.png"
-      alt=""
-      className="absolute left-1/2 top-1/2 -z-0 w-[150px] pl-1  scale-[1.2] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-    />
-  </span>
-</p>
+            <img
+              src="/Vector.png"
+              alt=""
+              className="absolute left-1/2 top-1/2 -z-0 w-[110px] pl-1 scale-[1.2] -translate-x-1/2 -translate-y-1/2 pointer-events-none sm:w-[150px]"
+            />
+          </span>
+        </p>
       </div>
 
       {/* Carousel */}
-      <div className="relative mx-auto mt-12 max-w-7xl   px-10">
+     {/* Carousel */}
+      <div className="relative mx-auto mt-10 max-w-7xl px-0 sm:px-6 md:mt-12 md:px-10">
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous"
@@ -126,7 +126,7 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
 
         <div
           ref={scrollerRef}
-          className="no-scrollbar flex gap-6 overflow-x-auto scroll-smooth px-1 py-2"
+          className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-4 py-2 sm:gap-6 sm:px-1"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {testimonials.map((t) => (
@@ -144,12 +144,32 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
         >
           <ChevronRight size={20} color={RED} />
         </button>
+
+        {/* Mobile-only arrow pair, below the cards */}
+        <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
+          <button
+            onClick={() => scroll(-1)}
+            aria-label="Previous"
+            className="flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white transition-transform active:scale-95"
+            style={{ borderColor: RED }}
+          >
+            <ChevronLeft size={16} color={RED} />
+          </button>
+          <button
+            onClick={() => scroll(1)}
+            aria-label="Next"
+            className="flex h-9 w-9 items-center justify-center rounded-full border-2 bg-white transition-transform active:scale-95"
+            style={{ borderColor: RED }}
+          >
+            <ChevronRight size={16} color={RED} />
+          </button>
+        </div>
       </div>
 
       {/* CTA */}
-      <div className="mt-10 flex justify-center">
+      <div className="mt-8 flex justify-center md:mt-10">
         <button
-          className="font-nav flex items-center gap-2  px-5 py-3 text-2xl font-semibold tracking-tighter text-white transition-transform hover:scale-105"
+          className="font-nav flex items-center gap-2 px-4 py-2.5 text-base font-semibold tracking-tight text-white transition-transform hover:scale-105 sm:px-5 sm:py-3 sm:text-lg md:text-2xl"
           style={{ backgroundColor: RED }}
         >
           START YOUR TRANSFORMATION <ArrowRight size={16} />

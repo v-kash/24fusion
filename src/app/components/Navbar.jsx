@@ -22,11 +22,10 @@ export default function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="relative z-20" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <div className="relative z-20" style={{ fontFamily: "'Raleway', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-        .font-display { font-family: 'Anton', sans-serif; }
-        .font-nav { font-family: 'Oswald', sans-serif; }
+        .font-display { font-family: 'Bebas Neue', sans-serif; }
+        .font-nav { font-family: 'Raleway', sans-serif; }
       `}</style>
 
       <header className="flex items-center justify-between gap-4 px-6 py-6 md:px-18">
@@ -45,7 +44,7 @@ export default function Navbar({
             <button
               key={link}
               onClick={() => setActive(link)}
-              className="font-nav text-xl tracking-wide text-white/90 transition-colors hover:text-white"
+              className="font-nav text-lg font-semibold    text-white/90 transition-colors hover:text-white"
             >
               <span
                 className="pb-1"
@@ -63,7 +62,7 @@ export default function Navbar({
 
         {/* Join now (desktop) */}
         <button
-          className="font-nav hidden items-center gap-2  px-5 py-2 text-2xl font-semibold tracking-tighter text-white transition-transform hover:scale-105 lg:flex"
+          className="font-display hidden items-center gap-2 px-3 py-1 text-2xl  text-white transition-transform hover:scale-105 lg:flex"
           style={{ backgroundColor: RED }}
         >
           JOIN NOW <ArrowRight size={16} />
@@ -90,14 +89,14 @@ export default function Navbar({
                   setActive(link);
                   setMenuOpen(false);
                 }}
-                className="font-nav text-left text-sm tracking-wide"
+                className="font-nav text-left text-sm font-semibold "
                 style={{ color: active === link ? RED : "white" }}
               >
                 {link.toUpperCase()}
               </button>
             ))}
             <button
-              className="font-nav mt-2 flex w-fit items-center gap-2 rounded px-5 py-2.5 text-sm font-semibold text-white"
+              className="font-display mt-2 flex w-fit items-center gap-2 rounded px-5 py-2.5 text-lg tracking-wider text-white"
               style={{ backgroundColor: RED }}
             >
               JOIN NOW <ArrowRight size={16} />

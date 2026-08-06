@@ -142,7 +142,7 @@ export default function WhyChooseUs() {
           <span className="h-px w-10" style={{ backgroundColor: RED }} />
         </div>
 
-        <h2 className="font-display mt-5 text-4xl leading-none tracking-wide sm:text-5xl md:text-6xl">
+        <h2 className="font-display mt-5 text-4xl leading-none tracking-tight sm:text-5xl md:text-6xl">
           <span className="text-white">BUILT DIFFERENT. </span>
           <span style={{ color: RED }}>DELIVERING RESULTS.</span>
         </h2>

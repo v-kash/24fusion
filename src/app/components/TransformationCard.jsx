@@ -26,7 +26,7 @@ export default function TransformationCard({
 }) {
   return (
     <div
-      className="w-[280px] shrink-0 overflow-hidden  bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)]"
+      className="w-[78vw] max-w-[280px] shrink-0 overflow-hidden bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)] sm:w-[260px] md:w-[280px]"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       <style>{`
@@ -36,7 +36,7 @@ export default function TransformationCard({
       `}</style>
 
       {/* Before / after image */}
-      <div className="relative m-2 h-[210px] overflow-hidden ">
+      <div className="relative m-2 h-[180px] overflow-hidden sm:h-[200px] md:h-[210px]">
         <div className="flex h-full w-full">
           <div className="relative h-full w-1/2 overflow-hidden bg-neutral-100">
             {beforeImg && (
@@ -60,37 +60,38 @@ export default function TransformationCard({
 
         {/* Weeks badge */}
         <div
-          className="font-nav absolute left-1/2 top-3 -translate-x-[50%]  px-3 py-1 text-xs font-bold tracking-wide text-white"
+          className="font-nav absolute left-1/2 top-3 -translate-x-[50%] px-2.5 py-1 text-[10px] font-bold tracking-wide text-white sm:px-3 sm:text-xs"
           style={{ backgroundColor: RED }}
         >
           {weeks}
         </div>
 
         {/* Center divider arrow */}
-        <div className="absolute left-1/2 top-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md">
-          <ChevronsRight size={24} color={RED} strokeWidth={2} />
+        <div className="absolute left-1/2 top-1/2 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md sm:h-8 sm:w-8">
+          <ChevronsRight size={20} color={RED} strokeWidth={2} className="sm:hidden" />
+          <ChevronsRight size={24} color={RED} strokeWidth={2} className="hidden sm:block" />
         </div>
       </div>
 
       {/* Stats row */}
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between px-3 py-3 sm:px-4">
         {stats.map((stat, i) => (
           <React.Fragment key={stat.label}>
             <div className="flex flex-1 flex-col items-center gap-1 text-center">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <div
-                  className="flex h-8 w-8 items-center justify-center rounded-full"
+                  className="flex h-7 w-7 items-center justify-center rounded-full sm:h-8 sm:w-8"
                   style={{ backgroundColor: "#FCE4E2" }}
                 >
-                  <img src={ICON_MAP[stat.type]} alt="" className="h-4 w-4" />
+                  <img src={ICON_MAP[stat.type]} alt="" className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </div>
 
-                <div className="font-display text-base text-neutral-900">
+                <div className="font-display text-sm text-neutral-900 sm:text-base">
                   {stat.value}
                 </div>
               </div>
 
-              <div className="font-nav text-[10px] uppercase tracking-wide text-neutral-500">
+              <div className="font-nav text-[9px] uppercase tracking-wide text-neutral-500 sm:text-[10px]">
                 {stat.label}
               </div>
             </div>
@@ -103,11 +104,11 @@ export default function TransformationCard({
       </div>
 
       {/* Quote */}
-     <div className="px-6 py-3 text-center">
-  <p className="text-sm leading-relaxed text-neutral-600 italic">
-    {"“"}{quote}{"”"}
-  </p>
-</div>
+      <div className="px-5 py-3 text-center sm:px-6">
+        <p className="text-xs leading-relaxed text-neutral-600 italic sm:text-sm">
+          {"“"}{quote}{"”"}
+        </p>
+      </div>
 
       {/* Rating */}
       <div className="flex items-center justify-center gap-1 pb-2">
@@ -117,7 +118,7 @@ export default function TransformationCard({
       </div>
 
       {/* Name */}
-      <div className="font-nav pb-5 text-center text-sm font-bold tracking-wide text-neutral-900">
+      <div className="font-nav pb-5 text-center text-xs font-bold text-neutral-900 sm:text-sm">
         {name.toUpperCase()}
       </div>
     </div>
