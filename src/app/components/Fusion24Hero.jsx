@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import {
   ArrowRight,
@@ -39,12 +39,20 @@ export default function Fusion24Hero() {
       `}</style>
 
       {/* ---------- Background ---------- */}
-      <div className="absolute inset-0">
-        <img
-          src="/hero.png"
-          alt=""
-          className="h-full w-full object-cover"
-        />
+      {/* ---------- Background Video ---------- */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/Gym_Video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/35" />
       </div>
 
@@ -65,7 +73,8 @@ export default function Fusion24Hero() {
             </h1>
 
             <p className="mt-6 max-w-l text-sm text-white/70 md:text-[20px]">
-              Join a premium fitness community with expert trainers, world-class <br/>
+              Join a premium fitness community with expert trainers, world-class{" "}
+              <br />
               equipment, personalized programs, and real results.
             </p>
 
@@ -88,8 +97,12 @@ export default function Fusion24Hero() {
               <div key={label}>
                 <div className="flex flex-col items-center gap-1 py-4 text-center">
                   <Icon size={28} color="white" strokeWidth={1.75} />
-                  <div className="font-display  text-3xl tracking-tight text-white">{value}</div>
-                  <div className="font-nav text-xs font-semibold uppercase tracking-tight text-white/60">{label}</div>
+                  <div className="font-display  text-3xl tracking-tight text-white">
+                    {value}
+                  </div>
+                  <div className="font-nav text-xs font-semibold uppercase tracking-tight text-white/60">
+                    {label}
+                  </div>
                 </div>
                 {i < STATS.length - 1 && (
                   <div className="h-px w-full bg-white/15" />
