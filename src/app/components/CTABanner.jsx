@@ -1,8 +1,27 @@
 "use client";
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion"; // Added Framer Motion
 
 const RED = "#FF2F31";
+
+// Framer Motion Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+  },
+};
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] },
+  },
+};
 
 export default function CTABanner() {
   return (
@@ -21,23 +40,31 @@ export default function CTABanner() {
         alt="Gym promotion background"
         className="absolute inset-0 h-full w-full object-cover object-center"
       />
-
-      {/* Left-to-Right Dark Gradient for Text Readability (Added) */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20 md:via-black/70 md:to-black/40" />
+      {/* Added a dark gradient overlay for better text readability */}
 
       {/* Content Wrapper */}
-      <div className="relative z-10 mx-auto w-full px-6 md:px-16">
+      <motion.div 
+        className="relative z-10 mx-auto w-full px-6 md:px-16"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div className="max-w-2xl">
           {/* Eyebrow */}
-          <div
+          <motion.div
+            variants={fadeUpVariants}
             className="font-nav text-xs sm:text-sm font-bold tracking-[0.2em]"
             style={{ color: RED }}
           >
             LIMITED-TIME OFFER
-          </div>
+          </motion.div>
 
           {/* Main Heading */}
-          <h2 className="font-display mt-3 leading-[0.85]">
+          <motion.h2 
+            variants={fadeUpVariants}
+            className="font-display mt-3 leading-[0.85]"
+          >
             <span className="block text-white text-4xl sm:text-6xl md:text-7xl lg:text-8xl">
               TRANSFORM TODAY
             </span>
@@ -53,10 +80,13 @@ export default function CTABanner() {
             >
               SAVE BIG!
             </span>
-          </h2>
+          </motion.h2>
 
           {/* Subtext / Discount Box */}
-          <div className="mt-6 inline-flex items-center border border-white/35 px-4 py-2 sm:px-5">
+          <motion.div 
+            variants={fadeUpVariants}
+            className="mt-6 inline-flex items-center border border-white/35 px-4 py-2 sm:px-5"
+          >
             {/* Left */}
             <div className="pr-4 sm:pr-5">
               <p className="font-nav text-[0.6rem] sm:text-[0.7rem] font-bold uppercase leading-none text-white">
@@ -64,9 +94,20 @@ export default function CTABanner() {
               </p>
 
               <div className="mt-1 flex items-end leading-none">
-                <span className="font-display text-4xl sm:text-[4.4rem] text-white leading-[0.8]">
+                {/* --- Highlighted 20% with continuous pulsing color & scale --- */}
+                <motion.span 
+                  className="font-display text-4xl sm:text-[4.4rem] leading-[0.8]"
+                  animate={{ 
+                    color: ["#ffffff", RED, "#ffffff"] // Pulses from white to red
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
                   20%
-                </span>
+                </motion.span>
 
                 <span className="font-display ml-1 mb-[6px] sm:mb-[8px] text-base sm:text-[1.2rem] text-white">
                   OFF
@@ -93,17 +134,18 @@ export default function CTABanner() {
                 MEMBERSHIP
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* CTA Button */}
-          <button
+          <motion.button
+            variants={fadeUpVariants}
             className="font-display mt-8 sm:mt-10 flex items-center gap-2 sm:gap-3 px-5 sm:px-6 py-2 sm:py-3 text-lg sm:text-2xl tracking-tight text-[#270811] transition-transform hover:scale-105"
             style={{ backgroundColor: "#ffffff" }}
           >
             START YOUR TRANSFORMATION <ArrowRight size={20} className="sm:hidden" /> <ArrowRight size={24} className="hidden sm:block" />
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion"; // Added Framer Motion
 
 const RED = "#CF1213";
 
@@ -11,8 +12,11 @@ export default function CoachCard({
   experience = "5+ Years",
 }) {
   return (
-    <div
-      className="w-[280px] shrink-0 overflow-hidden bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)]"
+    <motion.div
+      whileHover={{ y: -8 }} // Card lifts up on hover
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      // Added 'group' class for hover effects and updated shadow on hover
+      className="group w-[280px] shrink-0 overflow-hidden bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_40px_rgba(15,23,42,0.1)]"
       style={{ fontFamily: "'Raleway', sans-serif" }}
     >
       <style>{`
@@ -27,7 +31,8 @@ export default function CoachCard({
           <img
             src={img}
             alt={name}
-            className="h-full w-full object-cover object-top"
+            // Added zoom effect on hover
+            className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
           />
         )}
       </div>
@@ -53,8 +58,9 @@ export default function CoachCard({
         
         {/* Specialty Row */}
         <div className="flex items-center gap-3">
+          {/* Added icon pop & rotate on hover */}
           <div
-            className="flex h-9 w-9 items-center justify-center rounded-full shrink-0"
+            className="flex h-9 w-9 items-center justify-center rounded-full shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
             style={{ backgroundColor: "#FCE4E2" }}
           >
             <img src="/nutri.svg" alt="Nutrition Icon" className="h-6 w-6" />
@@ -66,8 +72,9 @@ export default function CoachCard({
 
         {/* Experience Row */}
         <div className="flex items-center gap-3">
+          {/* Added icon pop & rotate on hover */}
           <div
-            className="flex h-9 w-9 items-center justify-center rounded-full shrink-0"
+            className="flex h-9 w-9 items-center justify-center rounded-full shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3"
             style={{ backgroundColor: "#FCE4E2" }}
           >
             <img src="/reputation.svg" alt="Experience Icon" className="h-6 w-6" />
@@ -78,6 +85,6 @@ export default function CoachCard({
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,6 +1,8 @@
-'use client'
+"use client";
 import React, { useRef } from "react";
+import Link from "next/link"; // Added Next.js Link
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion"; // Added Framer Motion
 import TransformationCard from "./TransformationCard";
 
 const RED = "#CF1213";
@@ -62,6 +64,16 @@ const TESTIMONIALS = [
   },
 ];
 
+// Framer Motion Variants
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] },
+  },
+};
+
 export default function TransformationsSection({ testimonials = TESTIMONIALS }) {
   const scrollerRef = useRef(null);
 
@@ -85,8 +97,14 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
         .no-scrollbar::-webkit-scrollbar { display: none; }
       `}</style>
 
-      {/* Header */}
-      <div className="mx-auto max-w-3xl text-center">
+      {/* Header (Animated on Scroll) */}
+      <motion.div 
+        className="mx-auto max-w-3xl text-center"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div
           className="font-nav text-xs font-bold tracking-[0.12em] sm:text-sm sm:tracking-[0.15em]"
           style={{ color: RED }}
@@ -102,7 +120,6 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
             <span className="relative z-10 pl-1 font-semibold text-[#CF1213]">
               Gave Up.
             </span>
-
             <img
               src="/Vector.png"
               alt=""
@@ -110,11 +127,17 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
             />
           </span>
         </p>
-      </div>
+      </motion.div>
 
-      {/* Carousel */}
-     {/* Carousel */}
-      <div className="relative mx-auto mt-10 max-w-7xl px-0 sm:px-6 md:mt-12 md:px-10">
+      {/* Carousel (Animated on Scroll) */}
+      <motion.div 
+        className="relative mx-auto mt-10 max-w-7xl px-0 sm:px-6 md:mt-12 md:px-10"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ delay: 0.2 }}
+      >
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous"
@@ -164,17 +187,25 @@ export default function TransformationsSection({ testimonials = TESTIMONIALS }) 
             <ChevronRight size={16} color={RED} />
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* CTA */}
-      <div className="mt-8 flex justify-center md:mt-10">
-        <button
+      {/* CTA (Animated on Scroll + Link added) */}
+      <motion.div 
+        className="mt-8 flex justify-center md:mt-10"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ delay: 0.4 }}
+      >
+        <Link
+          href="/membership" // Changed to Link for navigation
           className="font-nav flex items-center gap-2 px-4 py-2.5 text-base font-semibold tracking-tight text-white transition-transform hover:scale-105 sm:px-5 sm:py-3 sm:text-lg md:text-2xl"
           style={{ backgroundColor: RED }}
         >
           START YOUR TRANSFORMATION <ArrowRight size={16} />
-        </button>
-      </div>
+        </Link>
+      </motion.div>
     </section>
   );
 }

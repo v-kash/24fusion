@@ -1,14 +1,16 @@
-'use client'
+"use client";
 import React, { useState } from "react";
+import Link from "next/link"; // Import Next.js Link
 import { Menu, X, ArrowRight } from "lucide-react";
 
+// Updated links to include both label and href (URL path)
 const NAV_LINKS = [
-  "Home",
-  "About Us",
-  "Programs",
-  "Success Stories",
-  "Membership",
-  "Contact Us",
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Success Stories", href: "/success-stories" },
+  { label: "Membership", href: "/membership" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 const RED = "#FF2F31";
@@ -16,7 +18,7 @@ const RED = "#FF2F31";
 export default function Navbar({
   links = NAV_LINKS,
   defaultActive = "Home",
-  logoSrc = "/logo1.png", // full logo (mark + "Fusion 24 Fitness Studio" name) as one image
+  logoSrc = "/logo1.png",
 }) {
   const [active, setActive] = useState(defaultActive);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,44 +31,46 @@ export default function Navbar({
       `}</style>
 
       <header className="flex items-center justify-between gap-4 px-6 py-6 md:px-18">
-        {/* Logo (single image containing mark + name) */}
-        <div className="flex shrink-0 items-center">
+        {/* Logo */}
+        <Link href="/" className="flex shrink-0 items-center">
           <img
             src={logoSrc}
             alt="Fusion 24 Fitness Studio"
-            className="h-12 w-auto object-contain md:h-12 scale-[2.2] "
+            className="h-12 w-auto object-contain md:h-12 scale-[2.2]"
           />
-        </div>
+        </Link>
 
         {/* Desktop nav links */}
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((link) => (
-            <button
-              key={link}
-              onClick={() => setActive(link)}
-              className="font-nav text-lg font-semibold    text-white/90 transition-colors hover:text-white"
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={() => setActive(link.label)}
+              className="font-nav text-lg font-semibold text-white/90 transition-colors hover:text-white"
             >
               <span
                 className="pb-1"
                 style={{
-                  color: active === link ? RED : undefined,
+                  color: active === link.label ? RED : undefined,
                   borderBottom:
-                    active === link ? `2px solid ${RED}` : "2px solid transparent",
+                    active === link.label ? `2px solid ${RED}` : "2px solid transparent",
                 }}
               >
-                {link.toUpperCase()}
+                {link.label.toUpperCase()}
               </span>
-            </button>
+            </Link>
           ))}
         </nav>
 
         {/* Join now (desktop) */}
-        <button
-          className="font-display hidden items-center gap-2 px-3 py-1 text-2xl  text-white transition-transform hover:scale-105 lg:flex"
+        <Link
+          href="/membership" // Added link to the Join Now button
+          className="font-display hidden items-center gap-2 px-3 py-1 text-2xl text-white transition-transform hover:scale-105 lg:flex"
           style={{ backgroundColor: RED }}
         >
           JOIN NOW <ArrowRight size={16} />
-        </button>
+        </Link>
 
         {/* Mobile toggle */}
         <button
@@ -83,24 +87,29 @@ export default function Navbar({
         <div className="mx-6 mb-4 rounded-lg bg-black/80 p-4 backdrop-blur lg:hidden">
           <nav className="flex flex-col gap-4">
             {links.map((link) => (
-              <button
-                key={link}
+              <Link
+                key={link.label}
+                href={link.href}
                 onClick={() => {
-                  setActive(link);
-                  setMenuOpen(false);
+                  setActive(link.label);
+                  setMenuOpen(false); // Close menu on click
                 }}
-                className="font-nav text-left text-sm font-semibold "
-                style={{ color: active === link ? RED : "white" }}
+                className="font-nav text-left text-sm font-semibold"
+                style={{ color: active === link.label ? RED : "white" }}
               >
-                {link.toUpperCase()}
-              </button>
+                {link.label.toUpperCase()}
+              </Link>
             ))}
-            <button
+            
+            {/* Mobile Join Now Button */}
+            <Link
+              href="/membership"
+              onClick={() => setMenuOpen(false)}
               className="font-display mt-2 flex w-fit items-center gap-2 rounded px-5 py-2.5 text-lg tracking-wider text-white"
               style={{ backgroundColor: RED }}
             >
               JOIN NOW <ArrowRight size={16} />
-            </button>
+            </Link>
           </nav>
         </div>
       )}

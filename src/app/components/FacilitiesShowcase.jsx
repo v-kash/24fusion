@@ -161,7 +161,7 @@
 //       {/* Foreground content */}
 //       <div className="relative z-10 flex h-full flex-col justify-end gap-8 px-6 pb-10 md:flex-row md:items-end md:justify-between md:px-14 md:pb-14">
 //         {/* Text block */}
-//         <div key={active} className="max-w-xl">   
+//         <div key={active} className="max-w-xl">
 //           <div className="fs-slide-up flex items-center gap-3">
 //             <span
 //               className="font-nav text-sm font-bold tracking-[0.2em]"
@@ -285,13 +285,11 @@
 //   );
 // }
 
-
-
-'use client'
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 
 const RED = "#FF2F31";
-const AUTOPLAY_MS = 6000;
+const AUTOPLAY_MS = 3000;
 const ENTER_MS = 800;
 const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 const TOTAL_MS = AUTOPLAY_MS + ENTER_MS;
@@ -307,7 +305,8 @@ const FACILITIES = [
     title: "SWIMMING",
     tagline: "REFRESH. RECHARGE. REPEAT.",
     desc: "Dive Into Our Premium Swimming Pool, Designed For Both Performance And Relaxation. Perfect For Lap Swimming, Low-Impact Workouts, Or Simply Enjoying A Refreshing Escape.",
-    thumbDesc: "Premium Indoor Pool Designed For Performance Training, Recovery, And Relaxation.",
+    thumbDesc:
+      "Premium Indoor Pool Designed For Performance Training, Recovery, And Relaxation.",
     bgImg: "/facilities/swimming-wide.png",
     cardImg: "/facilities/swimming-card.png",
   },
@@ -395,7 +394,10 @@ export default function FacilitiesShowcase() {
   // Autoplay logic
   useEffect(() => {
     if (paused) return;
-    timeoutRef.current = setTimeout(() => setActive((prev) => prev + 1), AUTOPLAY_MS);
+    timeoutRef.current = setTimeout(
+      () => setActive((prev) => prev + 1),
+      AUTOPLAY_MS,
+    );
     return () => clearTimeout(timeoutRef.current);
   }, [active, paused]);
 
@@ -463,7 +465,9 @@ export default function FacilitiesShowcase() {
           }}
         >
           <img
-            key={currentFacilityIndex === i ? `bg-${currentFacilityIndex}` : "idle"}
+            key={
+              currentFacilityIndex === i ? `bg-${currentFacilityIndex}` : "idle"
+            }
             src={f.bgImg}
             alt={f.title}
             className={`h-full w-full object-cover ${currentFacilityIndex === i ? "fs-bg-move" : ""}`}
@@ -526,7 +530,9 @@ export default function FacilitiesShowcase() {
             style={{
               gap: `${GAP}rem`,
               transform: `translateX(-${active * STEP}rem)`,
-              transition: noTransition ? "none" : `transform ${ENTER_MS}ms ${EASE}`,
+              transition: noTransition
+                ? "none"
+                : `transform ${ENTER_MS}ms ${EASE}`,
             }}
           >
             {/* Map over duplicated TRACK_ITEMS for infinite effect */}
@@ -544,7 +550,9 @@ export default function FacilitiesShowcase() {
                     transformOrigin: "left bottom",
                     opacity: isActive ? 1 : 0.55,
                     zIndex: isActive ? 30 : 10,
-                    boxShadow: isActive ? "0 25px 50px -12px rgba(0,0,0,0.8)" : "none",
+                    boxShadow: isActive
+                      ? "0 25px 50px -12px rgba(0,0,0,0.8)"
+                      : "none",
                     transition: `transform ${ENTER_MS}ms ${EASE}, opacity ${ENTER_MS}ms ${EASE}, box-shadow ${ENTER_MS}ms ${EASE}, height ${ENTER_MS}ms ${EASE}`,
                   }}
                 >

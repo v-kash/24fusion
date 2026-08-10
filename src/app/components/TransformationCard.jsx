@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { ChevronsRight, Star } from "lucide-react";
+import { motion } from "framer-motion"; // Added Framer Motion
 
 const RED = "#CF1213";
 
@@ -25,9 +26,12 @@ export default function TransformationCard({
   rating = 5,
 }) {
   return (
-    <div
-      className="w-[78vw] max-w-[280px] shrink-0 overflow-hidden bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)] sm:w-[260px] md:w-[280px]"
+    // Added motion.div for hover scaling effect and 'group' for image zoom
+    <motion.div 
+      className="group w-[78vw] max-w-[280px] shrink-0 overflow-hidden bg-white shadow-[0_2px_8px_rgba(15,23,42,0.06),0_8px_24px_rgba(15,23,42,0.08)] sm:w-[260px] md:w-[280px]"
       style={{ fontFamily: "'Poppins', sans-serif" }}
+      whileHover={{ scale: 1.03, y: -5 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -43,7 +47,8 @@ export default function TransformationCard({
               <img
                 src={beforeImg}
                 alt={`${name} before`}
-                className="h-full w-full object-cover"
+                // Added transition and group-hover zoom effect
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               />
             )}
           </div>
@@ -52,7 +57,8 @@ export default function TransformationCard({
               <img
                 src={afterImg}
                 alt={`${name} after`}
-                className="h-full w-full object-cover"
+                // Added transition and group-hover zoom effect
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               />
             )}
           </div>
@@ -66,10 +72,14 @@ export default function TransformationCard({
           {weeks}
         </div>
 
-        {/* Center divider arrow */}
+        {/* Center divider arrow (With continuous pulse animation) */}
         <div className="absolute left-1/2 top-1/2 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md sm:h-8 sm:w-8">
-          <ChevronsRight size={20} color={RED} strokeWidth={2} className="sm:hidden" />
-          <ChevronsRight size={24} color={RED} strokeWidth={2} className="hidden sm:block" />
+          <motion.div
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronsRight size={20} color={RED} strokeWidth={2} className="sm:hidden" />
+            <ChevronsRight size={24} color={RED} strokeWidth={2} className="hidden sm:block" />
+          </motion.div>
         </div>
       </div>
 
@@ -121,6 +131,6 @@ export default function TransformationCard({
       <div className="font-nav pb-5 text-center text-xs font-bold text-neutral-900 sm:text-sm">
         {name.toUpperCase()}
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,13 +1,14 @@
 "use client";
 import React, { useRef } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import CoachCard from "./CoachCard"; // Import the CoachCard we just built
+import { motion } from "framer-motion"; // Added Framer Motion
+import CoachCard from "./CoachCard";
 
 const RED = "#CF1213";
 
 const TRAINERS = [
   {
-    img: "/trainers/rahul.png", // Replace with your actual image paths
+    img: "/trainers/rahul.png",
     name: "RAHUL VERMA",
     role: "Strength Coach",
     specialty: "Specializes In Strength Training",
@@ -36,6 +37,16 @@ const TRAINERS = [
   },
 ];
 
+// Framer Motion Variants
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] },
+  },
+};
+
 export default function TrainersSection({ trainers = TRAINERS }) {
   const scrollerRef = useRef(null);
 
@@ -59,8 +70,14 @@ export default function TrainersSection({ trainers = TRAINERS }) {
         .no-scrollbar::-webkit-scrollbar { display: none; }
       `}</style>
 
-      {/* Header */}
-      <div className="mx-auto max-w-3xl text-center">
+      {/* Header (Animated) */}
+      <motion.div 
+        className="mx-auto max-w-3xl text-center"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         <div
           className="font-nav flex items-center justify-center gap-3 text-sm font-bold tracking-[0.2em]"
           style={{ color: RED }}
@@ -77,11 +94,17 @@ export default function TrainersSection({ trainers = TRAINERS }) {
           Certified Experts Committed To Pushing Your Limits And Perfecting Your
           Form.
         </p>
-      </div>
+      </motion.div>
 
-      {/* Carousel */}
-      <div className="relative mx-auto mt-10 max-w-7xl px-10 sm:px-6 md:mt-12 md:px-10">
-        {" "}
+      {/* Carousel (Animated) */}
+      <motion.div 
+        className="relative mx-auto mt-10 max-w-7xl px-10 sm:px-6 md:mt-12 md:px-10"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ delay: 0.2 }}
+      >
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous"
@@ -90,6 +113,7 @@ export default function TrainersSection({ trainers = TRAINERS }) {
         >
           <ChevronLeft size={20} color={RED} />
         </button>
+        
         <div
           ref={scrollerRef}
           className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth px-4 py-2 sm:gap-6 sm:px-1"
@@ -101,6 +125,7 @@ export default function TrainersSection({ trainers = TRAINERS }) {
             </div>
           ))}
         </div>
+
         <button
           onClick={() => scroll(1)}
           aria-label="Next"
@@ -109,7 +134,8 @@ export default function TrainersSection({ trainers = TRAINERS }) {
         >
           <ChevronRight size={20} color={RED} />
         </button>
-        {/* Mobile-only arrow pair, below the cards */}
+
+        {/* Mobile-only arrow pair */}
         <div className="mt-4 flex items-center justify-center gap-4 md:hidden">
           <button
             onClick={() => scroll(-1)}
@@ -129,26 +155,36 @@ export default function TrainersSection({ trainers = TRAINERS }) {
             <ChevronRight size={16} color={RED} />
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* CTA */}
-      {/* CTA */}
-      <div className="mt-10 flex justify-center">
+      {/* CTA (Animated) */}
+      <motion.div 
+        className="mt-10 flex justify-center"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ delay: 0.4 }}
+      >
         <button
-          className="group flex items-center gap-4  border-2 border-neutral-900 bg-white py-2 pl-6 pr-2 transition-colors hover:bg-neutral-900"
+          className="group flex items-center gap-4 border-2 border-neutral-900 bg-white py-2 pl-6 pr-2 transition-colors hover:bg-neutral-900"
           style={{ fontFamily: "'Bebas Neue', sans-serif" }}
         >
           <span className="text-xl tracking-tight text-neutral-900 transition-colors group-hover:text-white">
             READY TO TRAIN WITH THE BEST?
           </span>
-          <div
+          
+          {/* Added continuous pulse to the red arrow circle */}
+          <motion.div
+            animate={{ scale: [1, 1.08, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             className="flex h-10 w-10 items-center justify-center rounded-full transition-transform group-hover:translate-x-1"
             style={{ backgroundColor: RED }}
           >
             <ArrowRight size={20} color="#ffffff" />
-          </div>
+          </motion.div>
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 }
