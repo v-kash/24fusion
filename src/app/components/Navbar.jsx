@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link"; // Import Next.js Link
+import Link from "next/link";
+import { usePathname } from "next/navigation"; // Import usePathname
 import { Menu, X, ArrowRight } from "lucide-react";
 
-// Updated links to include both label and href (URL path)
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Programs", href: "/programs" },
-  { label: "Success Stories", href: "/success-stories" },
+  { label: "Success Stories", href: "/success" },
   { label: "Membership", href: "/membership" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -17,14 +17,19 @@ const RED = "#FF2F31";
 
 export default function Navbar({
   links = NAV_LINKS,
-  defaultActive = "Home",
   logoSrc = "/logo1.png",
 }) {
-  const [active, setActive] = useState(defaultActive);
+  const pathname = usePathname(); // Get current route path
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Helper function to check if a link is active based on the URL
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href); // Allows sub-routes to keep parent active
+  };
+
   return (
-    <div className="relative z-20" style={{ fontFamily: "'Raleway', sans-serif" }}>
+    <div className="absolute top-0 left-0 w-full z-20" style={{ fontFamily: "'Raleway', sans-serif" }}>
       <style>{`
         .font-display { font-family: 'Bebas Neue', sans-serif; }
         .font-nav { font-family: 'Raleway', sans-serif; }
@@ -46,15 +51,14 @@ export default function Navbar({
             <Link
               key={link.label}
               href={link.href}
-              onClick={() => setActive(link.label)}
               className="font-nav text-lg font-semibold text-white/90 transition-colors hover:text-white"
             >
               <span
                 className="pb-1"
                 style={{
-                  color: active === link.label ? RED : undefined,
-                  borderBottom:
-                    active === link.label ? `2px solid ${RED}` : "2px solid transparent",
+                  // Automatically apply red color if the URL matches the link
+                  color: isActive(link.href) ? RED : undefined,
+                  borderBottom: isActive(link.href) ? `2px solid ${RED}` : "2px solid transparent",
                 }}
               >
                 {link.label.toUpperCase()}
@@ -65,7 +69,7 @@ export default function Navbar({
 
         {/* Join now (desktop) */}
         <Link
-          href="/membership" // Added link to the Join Now button
+          href="/membership"
           className="font-display hidden items-center gap-2 px-3 py-1 text-2xl text-white transition-transform hover:scale-105 lg:flex"
           style={{ backgroundColor: RED }}
         >
@@ -90,12 +94,9 @@ export default function Navbar({
               <Link
                 key={link.label}
                 href={link.href}
-                onClick={() => {
-                  setActive(link.label);
-                  setMenuOpen(false); // Close menu on click
-                }}
+                onClick={() => setMenuOpen(false)} // Close menu on click
                 className="font-nav text-left text-sm font-semibold"
-                style={{ color: active === link.label ? RED : "white" }}
+                style={{ color: isActive(link.href) ? RED : "white" }}
               >
                 {link.label.toUpperCase()}
               </Link>

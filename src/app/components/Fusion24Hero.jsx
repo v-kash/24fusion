@@ -130,7 +130,6 @@ export default function Fusion24Hero() {
       </div>
 
       <div className="relative z-10 flex min-h-screen flex-col">
-        <Navbar />
 
         {/* ---------- Hero content ---------- */}
         <div className="flex flex-1 flex-col justify-center gap-10 px-6 py-10 md:px-16 xl:flex-row xl:items-center xl:justify-between">

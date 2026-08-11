@@ -9,9 +9,11 @@ import FacilitiesShowcase from "./components/FacilitiesShowcase";
 import TrainersSection from "./components/TrainersSection";
 import TransformationProcess from "./components/TransformationProcess";
 import CTABanner from "./components/CTABanner";
+import Footer from "./components/Footer";
 export default function Page() {
   return (
     <>
+    <Navbar/>
     <Fusion24Hero/>
 <TransformationsSection/>
 <WhyChooseUs/>
@@ -20,6 +22,7 @@ export default function Page() {
 <TrainersSection/>
 <TransformationProcess/>
       <CTABanner/>
+      <Footer/>
     </>
   );
 }
