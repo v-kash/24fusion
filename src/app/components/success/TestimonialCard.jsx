@@ -82,7 +82,7 @@ export default function TestimonialCard({
   </div>
 
   <div className="mt-3 flex items-center gap-1.5">
-    <h3 className="font-display text-[17px] font-bold uppercase leading-none tracking-normal text-white pt-1">
+    <h3 className="font-display text-[17px] font-medium uppercase leading-none tracking-wide text-white pt-1">
       {name}
     </h3>
     <img
