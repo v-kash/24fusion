@@ -25,7 +25,7 @@ const STORIES = [
     backSubtitle:
       "Gained 8.5 Kg In 12 Weeks With A Structured Training And Nutrition Plan.",
     stats: DEFAULT_STATS,
-    defaultFlipped: true, // shows the stats face at rest, like the reference
+    defaultFlipped: false, // shows the stats face at rest, like the reference
   },
   {
     id: "powerlifting",

@@ -46,22 +46,32 @@ export default function Navbar({
         </Link>
 
         {/* Desktop nav links */}
-        <nav className="hidden items-center gap-8 lg:flex">
+              {/* Desktop nav links */}
+        <nav className="hidden items-center gap-6 lg:flex">
           {links.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="font-nav text-lg font-semibold text-white/90 transition-colors hover:text-white"
+              className="font-nav text-sm font-semibold text-white/90 transition-colors hover:text-white"
             >
-              <span
-                className="pb-1"
+              <span 
+                className="relative inline-block pb-2"
                 style={{
-                  // Automatically apply red color if the URL matches the link
                   color: isActive(link.href) ? RED : undefined,
-                  borderBottom: isActive(link.href) ? `2px solid ${RED}` : "2px solid transparent",
                 }}
               >
                 {link.label.toUpperCase()}
+                
+                {/* Fading Underline */}
+                <span
+                  className="absolute bottom-0 left-0 h-px w-full transition-opacity duration-300"
+                  style={{
+                    // Fades from transparent -> Red -> transparent
+                    background: `linear-gradient(to right, transparent, ${RED}, transparent)`,
+                    // Show only if active, otherwise hide it
+                    opacity: isActive(link.href) ? 1 : 0, 
+                  }}
+                ></span>
               </span>
             </Link>
           ))}

@@ -29,7 +29,6 @@ const TESTIMONIALS = Array.from({ length: 6 }).map((_, i) => ({
   quote:
     "The Trainers Here Are Amazing! In 4 Months, I've Gained Strength, Lost Fat, And Gained The Confidence I Never Thought Possible. This Place Changed My Life.",
   stats: DEFAULT_STATS,
-  defaultFlipped: i === 0,
 }));
 
 const fadeUpVariants = {

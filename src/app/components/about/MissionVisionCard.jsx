@@ -67,4 +67,4 @@ export default function MissionVisionCard({
       </div>
     </div>
   );
-}
+} 
