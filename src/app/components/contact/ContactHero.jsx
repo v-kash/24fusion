@@ -36,17 +36,11 @@ export default function ContactHero() {
 
       {/* Background photo */}
       <img
-        src="/contact/hero.png"
+        src="/about/MRX.png"
         alt="Gym interior"
         className="absolute inset-0 h-full w-full object-cover object-[75%_center]"
       />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 45%, rgba(0,0,0,0.25) 100%)",
-        }}
-      />
+      
 
       <motion.div
         className="relative z-10 mx-auto max-w-7xl px-6 md:px-12"

@@ -22,7 +22,7 @@ const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${enc
 export default function LocationMap() {
   return (
     <section
-      className="w-full bg-white px-6 py-20 md:px-12"
+      className="w-full bg-white px-6 py-16 md:px-12"
       style={{ fontFamily: "'Raleway', sans-serif" }}
     >
       <style>{`
@@ -58,7 +58,7 @@ export default function LocationMap() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="h-[420px] w-full overflow-hidden border border-neutral-100 sm:h-[480px]">
+        <div className="h-[420px] w-full overflow-hidden border border-neutral-100 sm:h-[380px]">
           <iframe
             title="Gym location"
             src={MAP_SRC}
