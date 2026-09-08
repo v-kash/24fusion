@@ -70,7 +70,7 @@ export default function LocationMap() {
         </div>
 
         {/* Floating info card */}
-        <div className="absolute left-4 top-4 max-w-xs bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)] sm:left-8 sm:top-8">
+        <div className="absolute left-4 top-4 max-w-xs bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.12)] sm:left-4 sm:top-16">
           <div className="flex items-start gap-3">
             <span
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"

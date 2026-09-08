@@ -258,17 +258,17 @@ Our Trainers                </Link>
               </li>
               <li>
                 <Link
-                  href="/membership"
+                  href="/gallery"
                   className="text-[#6A6A6A] hover:text-[#CF1213] font-medium text-[14px] transition-colors"
                 >
-Membership Plans                </Link>
+Gallery                </Link>
               </li>
               <li>
                 <Link
-                  href="/policy"
+                  href="/diet"
                   className="text-[#6A6A6A] hover:text-[#CF1213] font-medium text-[14px] transition-colors"
                 >
-                  Testimonials
+                  Diet
                 </Link>
               </li>
               <li>

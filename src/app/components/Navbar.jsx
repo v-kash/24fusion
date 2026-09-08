@@ -7,9 +7,9 @@ import { Menu, X, ArrowRight } from "lucide-react";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Programs", href: "/programs" },
+  { label: "Diet", href: "/diet" },
   { label: "Success Stories", href: "/success" },
-  { label: "Membership", href: "/membership" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Contact Us", href: "/contact" },
 ];
 
